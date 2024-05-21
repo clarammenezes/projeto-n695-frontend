@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/tabs"
 import {useState} from "react";
 import {toast} from "sonner";
+import axios from "axios";
 
 export default function Page() {
 
@@ -37,26 +38,24 @@ export default function Page() {
             return
         }
 
-        const fetchUsersApi = await fetch("https://testefaculdade.pythonanywhere.com/api/users/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-            },
-            body: JSON.stringify(userData)
-        })
+        axios.post('https://testefaculdade.pythonanywhere.com/api/users/', userData)
+            .then(function (response: any)  {
 
-        if (fetchUsersApi.status === 201) {
-            toast.success("Usuário cadastrado com sucesso")
-        } else {
-            toast.error("Erro ao cadastrar usuário")
-        }
+                if (response.status === 201) {
+                    toast.success("Usuário cadastrado com sucesso")
+                }
+
+            })
+            .catch(function (error: any)  {
+                console.log(error)
+                toast.error("Erro ao cadastrar usuário")
+            })
 
     }
 
     return (
-        // <div className="w-lvw h-lvh justify-center items-center">
-            <Tabs defaultValue="entrar" className="w-lvw h-lvh justify-center items-center">
+        <div className="flex justify-center items-center h-lvh w-lvw bg-slate-900">
+            <Tabs defaultValue="entrar">
                 <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="entrar">Entrar</TabsTrigger>
                     <TabsTrigger value="registrar">Registrar</TabsTrigger>
@@ -135,6 +134,6 @@ export default function Page() {
                     </Card>
                 </TabsContent>
             </Tabs>
-        // </div>
+        </div>
     )
 }
