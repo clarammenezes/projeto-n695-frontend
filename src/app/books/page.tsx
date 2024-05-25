@@ -1,21 +1,14 @@
 "use client"
 
-import { cookies } from "next/headers";
-import {columns} from "./columns"
-import { DataTable } from "./data-table"
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import {toast} from "sonner";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-import HeaderComponent from "@/components/header";
-
-
 
 export default function DemoPage() {
-    // const data = await getData()
-    const [cookies, setCookie, removeCookie] = useCookies();
+
     const [data, setData] = useState([]); 
     const [totalSpent, setTotalSpent] = useState(0);
     const router = useRouter();
@@ -66,7 +59,7 @@ export default function DemoPage() {
                 {
                     data.map((book) => {
                         return (
-                            <Card className="w-[300px] h-[400px] self-center flex flex-col justify-center items-center">
+                            <Card className="w-[300px] h-[400px] self-center flex flex-col justify-center items-center" key={book.title}>
                             <CardHeader>
                                 <CardTitle>{book.title}</CardTitle>
                             </CardHeader>
