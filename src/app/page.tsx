@@ -31,11 +31,11 @@ export default function Home() {
                         className="flex flex-col justify-center items-center"
                     >
                         <Link 
-                            href="/signin" 
+                            href="/signup" 
                             className="bg-teal-400 sm:text-1xl rounded-lg border border-solid border-l-teal-400 w-[200px] p-2 mt-2 text-center align-middle"
                         
                         >Conheça já!</Link>
-                        <Link href="/signup" className="text-gray-50 text-[12px] xl:text-xl hover:cursor-pointer hover:underline mt-2">Já tem uma conta, entre aqui!</Link>
+                        <Link href="/signin" className="text-gray-50 text-[12px] xl:text-xl hover:cursor-pointer hover:underline mt-2">Já tem uma conta, entre aqui!</Link>
                     </motion.div>
                 </div>
             </div>

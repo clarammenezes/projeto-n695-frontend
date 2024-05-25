@@ -36,7 +36,7 @@ const formSchema = z.object({
     })
 });
 
-interface User {
+interface UserCredentials {
     username: string,
     password: string
 } 
@@ -44,7 +44,6 @@ interface User {
 export default function SignInPage() {
 
     const [showPassword, setShowPassword] = useState(false);
-    const [cookies, setCookie, removeCookie] = useCookies();
     const router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -56,33 +55,28 @@ export default function SignInPage() {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        handleLogin(values)
+        handleSignIn(values)
     }
 
-    async function handleLogin(userData: User) {
+    async function handleSignIn(userCredentials: UserCredentials) {
 
-        axios.post('https://testefaculdade.pythonanywhere.com/api/auth/login/', userData)
+        axios.post('https://testefaculdade.pythonanywhere.com/api/auth/login/', userCredentials)
             .then(function (response: any)  {
 
                 if (response.status !== 200) {
                     toast.error("Senha incorreta")
                     return
                 }
+
+                localStorage.setItem("user-access-token", response.data.access);
+                localStorage.setItem("user-refresh-token", response.data.refresh);
                 
-                setCookie("user-access-token", response.data.access, {
-                    httpOnly: true,
-                    path: '/'
-                })
-                setCookie("user-refresh-token", response.data.refresh, {
-                    httpOnly: true,
-                    path: '/'
-                })
                 toast.success("Usuário autenticado com sucesso, redirecionando")
                 router.push('/books')
 
             })
             .catch(function (error: any)  {
-                toast.error("Houve um erro ao tentar autenticar")
+                toast.error("Houve um erro ao tentar autenticar: ", error)
             })
 
     }

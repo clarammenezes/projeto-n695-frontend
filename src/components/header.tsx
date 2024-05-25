@@ -1,9 +1,13 @@
+"use client"
+
 import {
+    Book,
     Cloud,
     Github,
     LogOut,
     Settings,
-    User
+    User,
+    Users
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -13,46 +17,44 @@ import {
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuPortal,
     DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useRouter } from "next/navigation"
 function HeaderComponent() {
+
+    const router = useRouter();
+
+    function logout() {
+
+        localStorage.removeItem('userAccessToken');
+        localStorage.removeItem('userRefreshToken');
+        router.push('/signin');
+
+    }
+
     return (
         <header>
-            <div className="grid justify-items-end p-3 mr-6">
+            <div className="grid justify-items-end p-3 mr-6 fixed w-full">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline">Menu</Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56">
-                        <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
+                        <DropdownMenuLabel>Opções</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <User className="mr-2 h-4 w-4" />
-                                <span>Perfil</span>
+                            <DropdownMenuItem onClick={(e) => {router.push('/user-dashboard')}}>
+                                <Users className="mr-2 h-4 w-4" />
+                                <span>Usuários</span>
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Settings className="mr-2 h-4 w-4" />
-                                <span>Configurações</span>
+                            <DropdownMenuItem onClick={(e) => {router.push('/books')}}>
+                                <Book className="mr-2 h-4 w-4" />
+                                <span>Livros</span>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <Github className="mr-2 h-4 w-4" />
-                            <span>GitHub</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem disabled>
-                            <Cloud className="mr-2 h-4 w-4" />
-                            <span>API</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={(e) => {logout()}}>
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Sair</span>
                         </DropdownMenuItem>

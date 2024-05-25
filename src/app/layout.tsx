@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Roboto, Montserrat } from "next/font/google";
 import "./globals.css";
 import {Toaster} from "@/components/ui/sonner";
+import HeaderComponent from "@/components/header";
 
 const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
       <html lang="en">
       <body className={roboto.className}>
+        <HeaderComponent/>
         <main>{children}</main>
         <Toaster position="top-right" richColors/> 
       </body>
