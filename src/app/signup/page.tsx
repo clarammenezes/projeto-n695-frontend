@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,11 +19,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form"
 import Link from "next/link"
 import { EyeIcon, EyeOff } from "lucide-react"
-import { useCookies } from "react-cookie"
-import { passwordStrength } from 'check-password-strength'
-
-
-const pattern = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
     first_name: z.string().min(3, {
@@ -35,7 +30,7 @@ const formSchema = z.object({
     }),
     email: z.string().min(5, {
         message: "Email deve conter no mínimo 5 caracters"
-    }).refine((value) => pattern.test(value ?? ""), "Por favor, insira um e-mail válido"),
+    }),
     username: z.string().min(5, {
         message: "Usuário deve conter no mínimo 5 caracters"
     }),
@@ -56,6 +51,7 @@ interface UserForm {
 export default function SignUpPage() {
 
     const [showPassword, setShowPassword] = useState(false);
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -69,66 +65,30 @@ export default function SignUpPage() {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
         handleSignUp(values);
     }
 
     function handleSignUp(userForm: UserForm) {
 
-        const options = {
-            method: 'POST',
-            url: 'https://testefaculdade.pythonanywhere.com/api/users/',
-            headers: {
-              'Content-type': 'application/json; artifactType=AVRO',
-              'X-Registry-ArtifactId': 'share-price'
-            },
-            data: {
-              first_name: 'Diana',
-              last_name: 'Prince',
-              email: 'diana.prince@island.com',
-              username: 'diana.prince',
-              password: '123456'
-            }
-          };
-          
-          axios.request(options).then(function (response) {
-            console.log(response.data);
-          }).catch(function (error) {
-            console.error(error);
-          });
+        console.log(userForm);
 
-        // console.log(userForm);
+        axios.post('https://testefaculdade.pythonanywhere.com/api/users/', userForm)
+            .then(function (response: any) {
 
-        // axios.post('https://testefaculdade.pythonanywhere.com/api/users/', {
-        //     first_name: userForm.first_name,
-        //     last_name: userForm.last_name,
-        //     email: userForm.email,
-        //     username: userForm.username,
-        //     password: userForm.password
-        // }, {
-        //     headers: {
-        //         'Content-type': 'application/json; artifactType=AVRO',
-        //         'X-Registry-ArtifactId': 'share-price'
-        //     }
-        // })
-        //     .then(function (response: any) {
+                console.log(response);
 
-        //         console.log("entrou aqui");
+                if (response.status !== 201) {
+                    toast.error("Há algo de errado nas suas informações, por favor chegue novamente");
+                } 
 
-        //         if (response.status !== 201) {
-        //             toast.error("Há algo de errado nas suas informações, por favor chegue novamente");
-        //         }
+                router.push('/signin')                
 
-        //         console.log(response);
-
-        //     })
-        //     .catch(function (error: any) {
-        //         toast.error("Houve uma falha ao tentar cadastrar")
-        //         console.log(error)
-        //     })
+            })
+            .catch(function (error: any) {
+                toast.error("Houve uma falha ao tentar cadastrar")
+                console.log(error)
+            })
     }
-
-
 
     return (
 
