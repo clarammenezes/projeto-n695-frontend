@@ -3,7 +3,6 @@
 import {columns} from "./columns"
 import { DataTable } from "./data-table"
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import axios from "axios";
 import {toast} from "sonner";
 import { useRouter } from "next/navigation";
@@ -26,9 +25,7 @@ export default function DemoPage() {
             }
         })
         .then(function (response: any)  {
-
-            console.log(response)
-
+            
             if (response.status !== 200) {
                 toast.error("Houve um erro")
                 return

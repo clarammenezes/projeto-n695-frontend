@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -13,15 +12,14 @@ import {
 import { Input } from "@/components/ui/input"
 import {useState} from "react";
 import {toast} from "sonner";
-import axios from "axios";
 import { motion } from 'framer-motion'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod";
 import { useForm } from "react-hook-form"
 import Link from "next/link"
 import { EyeIcon, EyeOff } from "lucide-react"
-import { useCookies } from "react-cookie"
 import { useRouter } from "next/navigation";
+import { apiInstance } from "@/utils/api-instance";
 
 const formSchema = z.object({
     username: z.string().min(3, {
@@ -60,7 +58,7 @@ export default function SignInPage() {
 
     async function handleSignIn(userCredentials: UserCredentials) {
 
-        axios.post('https://testefaculdade.pythonanywhere.com/api/auth/login/', userCredentials)
+        apiInstance.post('/auth/login/', userCredentials)
             .then(function (response: any)  {
 
                 if (response.status !== 200) {

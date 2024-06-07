@@ -79,7 +79,18 @@ export default function SignUpPage() {
 
                 if (response.status !== 201) {
                     toast.error("Há algo de errado nas suas informações, por favor chegue novamente");
-                } 
+                }  
+
+                axios.post('https://testefaculdade.pythonanywhere.com/api/users/', {
+                    username: userForm.username,
+                    password: userForm.password
+                }).then(function (response: any) {
+
+                    console.log(response)
+
+                }).catch(function (error: any) {
+                    console.log(error)
+                })
 
                 router.push('/signin')                
 
