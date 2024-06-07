@@ -36,7 +36,6 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useState } from "react";
 import { apiInstance } from "@/utils/api-instance"
-import Router from "next/router";
 
 export type User = {
     id: string
@@ -115,7 +114,7 @@ export const columns: ColumnDef<User>[] = [
 
                     toast.success("Usuário deletado com sucesso!");
                     window.location.reload();
-                    
+
                 }).catch(function (error: any) {
                     toast.error(error);
                 })
