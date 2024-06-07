@@ -63,7 +63,7 @@ export const columns: ColumnDef<User>[] = [
     },    
     {
         id: "actions",
-        cell: ({ row }) => {
+        cell: function Cell ({ row }) {
 
             const user = row.original
             const accessToken = localStorage.getItem("user-access-token"); 
@@ -88,7 +88,6 @@ export const columns: ColumnDef<User>[] = [
                     }
 
                     toast.success("Usuário editado com sucesso");
-                    router.push('/user-dashboard');
                     window.location.reload();
 
                 }).catch(function (error: any){
