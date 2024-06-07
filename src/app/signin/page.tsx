@@ -82,7 +82,7 @@ export default function SignInPage() {
     return (
         <div className="h-lvh w-lvw bg-[url('/sign-in.jpg')] bg-no-repeat bg-cover">
             <div className="h-full w-full bg-gradient-to-b from-slate-950/0 to-slate-950/75 flex justify-center items-center" >
-                <div className="h-full w-3/6 flex justify-center items-center">
+                <div className="h-[70%] w-full xl:h-full xl:w-full 2xl:h-full 2xl:w-3/6 flex justify-center items-center">
                 <motion.div 
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
