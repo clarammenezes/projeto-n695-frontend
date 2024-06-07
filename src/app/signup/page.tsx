@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form"
 import Link from "next/link"
 import { EyeIcon, EyeOff } from "lucide-react"
 import { useRouter } from "next/navigation";
+import { apiInstance } from "@/utils/api-instance";
 
 const formSchema = z.object({
     first_name: z.string().min(3, {
@@ -72,7 +73,7 @@ export default function SignUpPage() {
 
         console.log(userForm);
 
-        axios.post('https://testefaculdade.pythonanywhere.com/api/users/', userForm)
+        apiInstance.post('/users/', userForm)
             .then(function (response: any) {
 
                 console.log(response);
@@ -81,7 +82,7 @@ export default function SignUpPage() {
                     toast.error("Há algo de errado nas suas informações, por favor chegue novamente");
                 }  
 
-                axios.post('https://testefaculdade.pythonanywhere.com/api/users/', {
+                apiInstance.post('/users/', {
                     username: userForm.username,
                     password: userForm.password
                 }).then(function (response: any) {
@@ -103,22 +104,22 @@ export default function SignUpPage() {
 
     return (
 
-        <div className="h-lvh w-lvw bg-[url('/sign-up.jpg')] bg-no-repeat bg-cover">
-            <div className="h-full w-full bg-gradient-to-b from-slate-950/0 to-slate-950/75 flex justify-center items-center" >
-                <div className="h-full w-3/6 justify-end items-end flex">
+        <div className="h-lvh w-lvw bg-[url('/sign-up.jpg')] bg-no-repeat bg-cover flex justify-center items-center">
+            <div className="h-full w-full bg-gradient-to-b from-slate-950/0 to-slate-950/75 flex justify-center items-center">
+                <div className="h-full w-3/6 justify-end items-end hidden xl:flex 2xl:flex">
                     <h1 className="text-4xl text-white mb-20 ml-5 mr-20">Seja bem vindo, sua leitura começa aqui!</h1>
                 </div>
-                <div className="h-full w-3/6 hidden 2xl:flex justify-center items-center">
+                <div className="h-full w-full xl:h-full xl:w-full 2xl:h-full 2xl:w-3/6 flex justify-center items-center">
                 <motion.div 
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.75 }}
-                    className="2xl:w-[600px] 2xl:h-[95%] sm:h-[80%] sm:w-[50%] flex flex-col justify-center items-center shadow-2xl rounded-lg bg-white"
+                    className="h-[70%] w-[90%] xl:w-[500px] xl:h-[80%] 2xl:w-[600px] 2xl:h-[95%] flex flex-col justify-center items-center shadow-2xl rounded-lg bg-white"
                     
                 > 
-                    <h3 className="font-semibold text-4xl mb-10" >Entrar em sua conta</h3>
+                    <h3 className="font-semibold text-3xl 2xl:text-4xl mb-10" >Criar uma nova conta</h3>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 2xl:space-y-8">
                             <FormField 
                                 control={form.control}
                                 name = "first_name"
@@ -126,7 +127,7 @@ export default function SignUpPage() {
                                     <FormItem>
                                         <FormLabel className="">Nome</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Digite seu nome" {...field} className="rounded-lg sm:w-[200px] 2xl:w-[500px]"/>                                        
+                                            <Input placeholder="Digite seu nome" {...field} className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]"/>                                        
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -139,7 +140,7 @@ export default function SignUpPage() {
                                     <FormItem>
                                         <FormLabel className="">Sobrenome</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Digite seu sobrenome" {...field} className="rounded-lg sm:w-[200px] 2xl:w-[500px]"/>                                        
+                                            <Input placeholder="Digite seu sobrenome" {...field} className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]"/>                                        
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -152,7 +153,7 @@ export default function SignUpPage() {
                                     <FormItem>
                                         <FormLabel className="">Email</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Digite seu email" {...field} className="rounded-lg sm:w-[200px] 2xl:w-[500px]"/>                                        
+                                            <Input placeholder="Digite seu email" {...field} className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]"/>                                        
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -165,7 +166,7 @@ export default function SignUpPage() {
                                     <FormItem>
                                         <FormLabel className="">Usuário</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Insira seu usuário" {...field} className="rounded-lg sm:w-[200px] 2xl:w-[500px]"/>                                        
+                                            <Input placeholder="Insira seu usuário" {...field} className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]"/>                                        
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -178,7 +179,7 @@ export default function SignUpPage() {
                                     <FormItem>
                                         <FormLabel>Senha</FormLabel>
                                         <FormControl>
-                                            <div className="relative sm:w-[200px] 2xl:w-[500px]">
+                                            <div className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]">
                                                 <Input className="rounded-lg pr-9" type={!showPassword ? "password" : "text"} placeholder="Insira sua senha" {...field} />
                                                 {!showPassword && <EyeIcon className="absolute right-0 top-0 m-2.5 h-4 w-4 text-muted-foreground hover:cursor-pointer" onClick={(e) => setShowPassword(true)}/>}
                                                 {showPassword && <EyeOff className="absolute right-0 top-0 m-2.5 h-4 w-4 text-muted-foreground hover:cursor-pointer" onClick={(e) => setShowPassword(false)}/>}
@@ -188,10 +189,10 @@ export default function SignUpPage() {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" className="rounded-lg w-[500px]">Entrar</Button>
+                            <Button type="submit" className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px">Entrar</Button>
                         </form>
                     </Form>
-                    <span className="mt-10">Já possui uma conta? <Link href={"/signin"} className="font-bold hover:underline ">Entre aqui!</Link></span>
+                    <span className="mt-5 2xl:mt-10">Já possui uma conta? <Link href={"/signin"} className="font-bold hover:underline ">Entre aqui!</Link></span>
                 </motion.div>
                 </div>
             </div>

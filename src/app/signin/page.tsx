@@ -87,7 +87,7 @@ export default function SignInPage() {
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.75 }}
-                    className="2xl:w-[600px] 2xl:h-[95%] sm:h-[80%] sm:w-[50%] flex flex-col justify-center items-center shadow-2xl rounded-lg bg-white"
+                    className="h-[70%] w-[90%] xl:w-[500px] xl:h-[80%] 2xl:w-[600px] 2xl:h-[95%] flex flex-col justify-center items-center shadow-2xl rounded-lg bg-white"
                     
                 > 
                     <h3 className="font-semibold text-4xl mb-10" >Entrar em sua conta</h3>
@@ -100,7 +100,7 @@ export default function SignInPage() {
                                     <FormItem>
                                         <FormLabel className="">Usuário</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Insira seu usuário" {...field} className="rounded-lg sm:w-[200px] 2xl:w-[500px]"/>                                        
+                                            <Input placeholder="Insira seu usuário" {...field} className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]"/>                                        
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -113,7 +113,7 @@ export default function SignInPage() {
                                     <FormItem>
                                         <FormLabel>Senha</FormLabel>
                                         <FormControl>
-                                            <div className="relative sm:w-[200px] 2xl:w-[500px]">
+                                            <div className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]">
                                                 <Input className="rounded-lg pr-9" type={!showPassword ? "password" : "text"} placeholder="Insira sua senha" {...field} />
                                                 {!showPassword && <EyeIcon className="absolute right-0 top-0 m-2.5 h-4 w-4 text-muted-foreground hover:cursor-pointer" onClick={(e) => setShowPassword(true)}/>}
                                                 {showPassword && <EyeOff className="absolute right-0 top-0 m-2.5 h-4 w-4 text-muted-foreground hover:cursor-pointer" onClick={(e) => setShowPassword(false)}/>}
@@ -123,13 +123,13 @@ export default function SignInPage() {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" className="rounded-lg w-[500px]">Entrar</Button>
+                            <Button type="submit" className="rounded-lg w-[200px] xl:w-[400px] 2xl:w-[500px]">Entrar</Button>
                         </form>
                     </Form>
                     <span className="mt-10">Não possui uma conta ainda? <Link href={"/signup"} className="font-bold hover:underline ">Crie aqui!</Link></span>
                 </motion.div>
                 </div>
-                <div className="h-full w-3/6 justify-end items-end hidden 2xl:flex">
+                <div className="h-full w-3/6 justify-end items-end hidden xl:flex 2xl:flex">
                     <h1 className="text-4xl text-white mb-20 ml-5 mr-20">Seja bem-vindo de volta!</h1>
                 </div>
             </div>
