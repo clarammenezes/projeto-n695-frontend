@@ -30,7 +30,6 @@ import {
     AlertDialogTitle, 
     AlertDialogTrigger 
 } from "@/components/ui/alert-dialog"
-import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -67,7 +66,6 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => {
 
             const user = row.original
-            const router = useRouter();      
             const accessToken = localStorage.getItem("user-access-token"); 
             
             const [userInfo, setUserInfo] = useState({
