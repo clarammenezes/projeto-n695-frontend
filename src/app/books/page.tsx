@@ -63,7 +63,7 @@ export default function DemoPage() {
                         {
                             data.map((book: any) => {
                                 return (
-                                    <Dialog>                                        
+                                    <Dialog key={book.id}>                                        
                                         <Card className="w-[300px] h-[500px] flex flex-col justify-around items-center hover:bg-slate-100 hover:cursor-pointer" key={book.title}>
                                             <CardHeader>
                                                 <CardTitle>{book.title}</CardTitle>
