@@ -78,24 +78,24 @@ export default function DemoPage() {
                                             <Button variant="outline">Informações</Button>
                                         </DialogTrigger>
                                         </Card>            
-                                        <DialogContent className="w-[1200px] h-[700px]">   
-                                            <div className="flex flex-row w-full ">              
+                                        <DialogContent className="w-[90%] h-[500px] xl:w-[1000px] xl:h-[600px] 2xl:w-[1200px] 2xl:h-[700px] overflow-y-auto">   
+                                            <div className="flex flex-col xl:flex-row 2xl:flex-row w-full ">              
                                                 <div className="flex flex-col">
                                                     <h3 className="text-4xl font-semibold">{book.title}</h3>                                            
-                                                    <div className="w-full mt-10 flex">
-                                                        <img src={book.image} width="30%" />
+                                                    <div className="w-full mt-10 flex flex-col justify-center items-center">
+                                                        <img src={book.image} className="w-[50%] xl:w-[20%] xl:h-[100%] 2xl:w-[30%] 2xl:h-[100%]" />
                                                         <div className="flex flex-col space-y-4">
                                                             <div className="ml-10 flex">
-                                                                <h4 className="font-semibold text-2xl">Autor: </h4>
-                                                                <p className="font-semibold text-2xl ml-2">{book.author}</p>
+                                                                <h4 className="font-semibold text-sm xl:text-2xl 2xl:text-2xl">Autor: </h4>
+                                                                <p className="font-semibold text-sm xl:text-2xl 2xl:text-2xl ml-2">{book.author}</p>
                                                             </div>
                                                             <div className="ml-10 flex">
-                                                                <h4 className="font-semibold text-2xl">Categoria:</h4>
-                                                                <p className="font-semibold text-2xl ml-2">{book.category}</p>
+                                                                <h4 className="font-semibold text-sm xl:text-2xl 2xl:text-2xl">Categoria:</h4>
+                                                                <p className="font-semibold text-sm xl:text-2xl 2xl:text-2xl ml-2">{book.category}</p>
                                                             </div>
                                                             <div className="ml-10 flex">
-                                                                <h4 className="font-semibold text-2xl">Sumário:</h4>
-                                                                <p className="ml-2 text-xl">{book.summary}</p>
+                                                                <h4 className="font-semibold text-sm xl:text-2xl 2xl:text-2xl">Sumário:</h4>
+                                                                <p className="ml-2 text-sm xl:text-xl 2xl:text-xl">{book.summary}</p>
                                                             </div>
                                                         </div>
                                                     </div>
