@@ -6,6 +6,9 @@ import {
     Github,
     LogOut,
     Settings,
+    Sheet,
+    SheetIcon,
+    StickyNote,
     User,
     Users
 } from "lucide-react"
@@ -54,10 +57,15 @@ function HeaderComponent() {
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                            <StickyNote className="mr-2 h-4 w-4" />
+                            <a href="https://testefaculdade.pythonanywhere.com/politica-de-privacidade/" target="_blank">Política de privacide</a>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={(e) => {logout()}}>
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Sair</span>
-                        </DropdownMenuItem>
+                        </DropdownMenuItem>                        
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
