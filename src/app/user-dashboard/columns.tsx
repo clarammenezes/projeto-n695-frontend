@@ -134,7 +134,7 @@ export const columns: ColumnDef<User>[] = [
                                         Editar usuário
                                 </DropdownMenuItem>
                             </DialogTrigger>
-                            <DialogContent>
+                            <DialogContent className="w-[512px]">
                                 <DialogHeader>
                                     <DialogTitle>Editar perfil</DialogTitle>
                                 </DialogHeader>
