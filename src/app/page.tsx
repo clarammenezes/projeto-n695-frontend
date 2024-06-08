@@ -12,7 +12,7 @@ export default function Home() {
                         initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.75 }}
-                        className="font-semibold text-4xl xl:text-9xl text-gray-50 drop-shadow"
+                        className="font-semibold text-4xl xl:text-7xl text-gray-50 drop-shadow"
                     >
                         Bem-vindo a sua plataforma colaborativa de livros
                     </motion.h1>
