@@ -107,7 +107,7 @@ export default function SignUpPage() {
         <div className="h-lvh w-lvw bg-[url('/sign-up.jpg')] bg-no-repeat bg-cover flex justify-center items-center">
             <div className="h-full w-full bg-gradient-to-b from-slate-950/0 to-slate-950/75 flex justify-center items-center">
                 <div className="h-full w-3/6 justify-end items-end hidden xl:flex 2xl:flex">
-                    <h1 className="text-4xl text-white mb-20 ml-5 mr-20">Seja bem vindo, sua leitura começa aqui!</h1>
+                    <h1 className="text-4xl text-white mb-20 ml-5 mr-20">Seja bem vindo, seu aprendizado começa aqui!</h1>
                 </div>
                 <div className="h-full w-full xl:h-full xl:w-full 2xl:h-full 2xl:w-3/6 flex justify-center items-center">
                 <motion.div 

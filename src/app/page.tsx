@@ -14,7 +14,7 @@ export default function Home() {
                         transition={{ duration: 0.75 }}
                         className="font-semibold text-4xl xl:text-7xl text-gray-50 drop-shadow"
                     >
-                        Bem-vindo a sua plataforma colaborativa de livros
+                        Seja bem vindo, seu aprendizado começa aqui
                     </motion.h1>
                     <motion.h2
                         initial={{ opacity: 0, y: 100 }}
@@ -22,7 +22,6 @@ export default function Home() {
                         transition={{ duration: 1 }}
                         className="font-semibold text-base xl:text-2xl text-gray-50 drop-shadow"
                     >
-                        Com a BookLabs, compartilhar sua biblioteca de livros com amigos ficou mais fácil.
                     </motion.h2>
                     <motion.div
                         initial={{ opacity: 0, y: 100 }}

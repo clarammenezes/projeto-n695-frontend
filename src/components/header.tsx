@@ -53,13 +53,13 @@ function HeaderComponent() {
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={(e) => {router.push('/books')}}>
                                 <Book className="mr-2 h-4 w-4" />
-                                <span>Livros</span>
+                                <span>Aprendizado</span>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
                             <StickyNote className="mr-2 h-4 w-4" />
-                            <a href="https://testefaculdade.pythonanywhere.com/politica-de-privacidade/" target="_blank">Política de privacide</a>
+                            <a href="https://testefaculdade.pythonanywhere.com/politica-de-privacidade/" target="_blank">Política de privacidade</a>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={(e) => {logout()}}>
